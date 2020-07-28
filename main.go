@@ -4,11 +4,15 @@ import (
     "fmt"
     "log"
     "net/http"
+    "net/url"
 )
 
 func main() {
 
-    http.Handle("/", http.FileServer(http.Dir("./static")))
+     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+         u, _ := url.Parse(r.URL.Path)
+        http.ServeFile(w, r, u.path)
+    })
 
     http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintf(w, "Hi")
