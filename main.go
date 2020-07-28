@@ -8,15 +8,13 @@ import (
 
 func main() {
 
-     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        http.ServeFile(w, r, html.EscapeString(r.URL.Path))
-    })
+     http.Handle("/", http.FileServer(http.Dir("./static")))
 
-    http.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir("./images"))))
+    http.Handle("/dir/", http.StripPrefix("/dir/", http.FileServer(http.Dir("./dir1/dir2"))))
     http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintf(w, "Hi")
     })
-
+    http.Handle("/volume/", http.FileServer(http.Dir("./volume")))
     log.Fatal(http.ListenAndServe(":8081", nil))
 
 }
