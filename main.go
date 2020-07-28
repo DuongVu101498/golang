@@ -10,8 +10,7 @@ import (
 func main() {
 
      http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-         u, _ := url.Parse(r.URL.Path)
-        http.ServeFile(w, r, u.path)
+        http.ServeFile(w, r, r.URL.Path)
     })
 
     http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request) {
