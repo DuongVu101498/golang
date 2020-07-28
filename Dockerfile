@@ -3,4 +3,4 @@ FROM golang:1.14
 WORKDIR /go/src/app
 COPY . .
 EXPOSE  8081
-CMD ["go","run","main.go"]
+#CMD ["go","run","main.go"]
