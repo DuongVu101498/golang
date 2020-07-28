@@ -1,0 +1,1 @@
+echo readfile("sample.conf");
