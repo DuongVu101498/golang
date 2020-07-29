@@ -14,7 +14,7 @@ func main() {
     http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintf(w, "Hi")
     })
-    http.Handle("/volume/", http.FileServer(http.Dir("/static/volume")))
+    http.Handle("/volume/", http.FileServer(http.Dir("./static/volume")))
     log.Fatal(http.ListenAndServe(":8081", nil))
 
 }
